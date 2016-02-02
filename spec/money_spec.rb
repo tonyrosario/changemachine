@@ -38,4 +38,11 @@ describe Money do
       end
     end
   end
+
+  describe "#currency" do
+    it "returns USD as default" do
+      money = Money.new
+      expect(money.currency).to eq("USD")
+    end
+  end
 end

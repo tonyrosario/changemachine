@@ -6,4 +6,8 @@ class Money
   def amount
     @amount / 100.0
   end
+
+  def currency
+    "USD"
+  end
 end
