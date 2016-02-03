@@ -1,9 +1,4 @@
 class ChangeMachine
-  def initialize
-    @bills = []
-    @coins = []
-  end
-
   def make_change(amount=0)
     @amount = amount
     cents = get_cents
@@ -16,21 +11,23 @@ class ChangeMachine
   end
 
   def process_coins(amount)
+    coins = []
     [25, 10, 5, 1].each do |coin|
       num_of_coins = amount / coin
       amount -= num_of_coins * coin
-      @coins << num_of_coins
+      coins << num_of_coins
     end
-    @coins
+    coins
   end
 
   def process_dollars(amount)
+    bills = []
     [20, 10, 5, 1].each do |bill|
       num_of_bills = amount / bill
       amount -= num_of_bills * bill
-      @bills << num_of_bills
+      bills << num_of_bills
   end
-    @bills
+    bills
   end
 
   private
