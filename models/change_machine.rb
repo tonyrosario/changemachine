@@ -4,9 +4,12 @@ class ChangeMachine
     cents = get_cents
 
     dollars = get_dollars
-    result = process_dollars(dollars) + process_coins(cents)
+    @result = new_result_hash
 
-    return result
+    process_dollars(dollars)
+    process_coins(cents)
+
+    return @result
 
   end
 
@@ -22,10 +25,10 @@ class ChangeMachine
 
   def process_dollars(amount)
     bills = []
-    [20, 10, 5, 1].each do |bill|
+    dollar_values.keys.each do |bill|
       num_of_bills = amount / bill
       amount -= num_of_bills * bill
-      bills << num_of_bills
+      @result[dollar_values[bill]] = num_of_bills
   end
     bills
   end
@@ -42,5 +45,17 @@ class ChangeMachine
 
   def get_cents
       @amount % 100
+  end
+
+  def new_result_hash
+    Hash[:twenties, 0, :tens, 0, :fives, 0, :ones, 0, :quarters, 0, :dimes, 0, :nickels, 0, :pennies, 0]
+  end
+
+  def coin_values
+    { 25 => :quarters, 10 => :dimes, 5 => :nickels, 1 => :pennies }
+  end
+
+  def dollar_values
+    { 20 => :twenties, 10 => :tens, 5 => :fives, 1 => :ones }
   end
 end
