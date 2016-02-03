@@ -63,12 +63,14 @@ describe ChangeMachine do
     end
 
     context "dollars and coins" do
-      it "returns 7 dollars and 99 cents for 799" do
-        expect(subject.make_change(799)).to eq([0,0,1,2,3,2,0,4])
+      it "returns 1 five, 2 dollars, 3 quarters, 2 dimes, and 4 pennies for 799" do
+        expected_change = { twenties: 0, tens: 0, fives: 1, ones: 2, quarters: 3, dimes: 2, nickels: 0, pennies: 4 }
+        expect(subject.make_change(799)).to eq(expected_change)
       end
 
-      it "returns 10 dollars and 99 cents for 799" do
-        expect(subject.make_change(1099)).to eq([0,1,0,0,3,2,0,4])
+      it "returns 1 ten, 1 five, 4 dollars, 2 quarters, 1 dimes, 1 nickel, and 4 pennies for 1969" do
+        expected_change = { twenties: 0, tens: 1, fives: 1, ones: 4, quarters: 2, dimes: 1, nickels: 1, pennies: 4 }
+        expect(subject.make_change(1969)).to eq(expected_change)
       end
     end
   end
