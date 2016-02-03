@@ -44,5 +44,19 @@ describe Money do
       money = Money.new
       expect(money.currency).to eq("USD")
     end
+
+    it "accepts a string for currency" do
+      money = Money.new(0, "GBP")
+      expect(money.amount).to eq(0.00)
+      expect(money.currency).to eq("GBP")
+    end
+
+    context "invalid" do
+      it "returns a 0-dollar USD currency" do
+        money = Money.new("GBP")
+        expect(money.amount).to eq(0.00)
+        expect(money.currency).to eq("USD")
+      end
+    end
   end
 end
