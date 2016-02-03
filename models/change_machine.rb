@@ -14,13 +14,11 @@ class ChangeMachine
   end
 
   def process_coins(amount)
-    coins = []
     [25, 10, 5, 1].each do |coin|
       num_of_coins = amount / coin
       amount -= num_of_coins * coin
-      coins << num_of_coins
+      @result[coin_values[coin]] = num_of_coins
     end
-    coins
   end
 
   def process_dollars(amount)

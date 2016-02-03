@@ -4,7 +4,7 @@ describe ChangeMachine do
   describe "#make_change" do
     context "dollars only" do
 
-      it "returns a Hash of 0 " do
+      it "returns all zeros for each bill for 0" do
         expected_change = { twenties: 0, tens: 0, fives: 0, ones: 0, quarters: 0, dimes: 0, nickels: 0, pennies: 0 }
         expect(subject.make_change(0)).to eq(expected_change)
       end
@@ -36,24 +36,29 @@ describe ChangeMachine do
     end
 
     context "coins only" do
-      it "returns [0,0,0,0] for 0" do
-        expect(subject.make_change(0)).to eq([0,0,0,0,0,0,0,0])
+      it "returns all zeros for each coin for 0" do
+        expected_change = { twenties: 0, tens: 0, fives: 0, ones: 0, quarters: 0, dimes: 0, nickels: 0, pennies: 0 }
+        expect(subject.make_change(0)).to eq(expected_change)
       end
 
-      it "returns an array of [0,0,0,0,0,0,0,1] for 1 cent" do
-        expect(subject.make_change(1)).to eq([0,0,0,0,0,0,0,1])
+      it "returns a Hash with 1 penny for 1" do
+        expected_change = { twenties: 0, tens: 0, fives: 0, ones: 0, quarters: 0, dimes: 0, nickels: 0, pennies: 1 }
+        expect(subject.make_change(1)).to eq(expected_change)
       end
 
-      it "returns an array of [0,0,0,0,0,0,0,4] for 4 cents" do
-        expect(subject.make_change(4)).to eq([0,0,0,0,0,0,0,4])
+      it "returns a Hash with 4 pennies for 4" do
+        expected_change = { twenties: 0, tens: 0, fives: 0, ones: 0, quarters: 0, dimes: 0, nickels: 0, pennies: 4 }
+        expect(subject.make_change(4)).to eq(expected_change)
       end
 
-      it "returns an array of [0,0,0,0,0,0,1,0] for 5 cents" do
-        expect(subject.make_change(5)).to eq([0,0,0,0,0,0,1,0])
+      it "returns a Hash with 1 nickel for 5" do
+        expected_change = { twenties: 0, tens: 0, fives: 0, ones: 0, quarters: 0, dimes: 0, nickels: 1, pennies: 0 }
+        expect(subject.make_change(5)).to eq(expected_change)
       end
 
-      it "returns an array of [0,0,0,0,2,0,0,0] for 50 cents" do
-        expect(subject.make_change(50)).to eq([0,0,0,0,2,0,0,0])
+      it "returns a Hash with 2 quarters for 50" do
+        expected_change = { twenties: 0, tens: 0, fives: 0, ones: 0, quarters: 2, dimes: 0, nickels: 0, pennies: 0 }
+        expect(subject.make_change(50)).to eq(expected_change)
       end
     end
 
