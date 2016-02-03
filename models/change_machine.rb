@@ -24,13 +24,11 @@ class ChangeMachine
   end
 
   def process_dollars(amount)
-    bills = []
     dollar_values.keys.each do |bill|
       num_of_bills = amount / bill
       amount -= num_of_bills * bill
       @result[dollar_values[bill]] = num_of_bills
-  end
-    bills
+    end
   end
 
   private
